@@ -30,8 +30,8 @@ Open your browser and go to http://localhost:3333
 TODO
 
 1. Refactor to make a new StockTableRow
-2. PropTypes
+2. ~~PropTypes~~
 3. Test :)
 4. Hide AutoComplete bar when adding a stock and have it show again after adding a stock or cancelling.
 5. Refactor with Optimizations
-6. Refactor with code style 
+6. Refactor with code style
