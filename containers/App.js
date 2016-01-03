@@ -74,6 +74,7 @@ class App extends Component {
                             handleAdd={this.handleAdd.bind(this)}
                           /> : null
         }
+        <br />
         <Paper zDepth={2} >
           <StockPortfolioTable
             portfolio={stockPortfolio}
