@@ -7,7 +7,6 @@ import stockDB from '../data/mockStockDB';
 import stockPortfolio from '../data/mockStockPortfolio';
 import Paper from 'material-ui/lib/paper';
 
-
 const hide = {
   display: 'none'
 };
