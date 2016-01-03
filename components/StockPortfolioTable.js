@@ -81,8 +81,8 @@ class StockPortfolioTable extends Component {
       >
       <TableHeader enableSelectAll={this.state.enableSelectAll}>
         <TableRow>
-          <TableHeaderColumn colSpan="7" tooltip='Super Header' style={{textAlign: 'center', fontSize: 'medium'}}>
-            Stock Portfolio
+          <TableHeaderColumn colSpan="7" tooltip='Super Header' style={{textAlign: 'center', fontSize: 'large'}}>
+            Your Stock Portfolio
           </TableHeaderColumn>
         </TableRow>
         <TableRow>
@@ -92,7 +92,7 @@ class StockPortfolioTable extends Component {
           <TableHeaderColumn tooltip='Price Purchased'>Price Purchased</TableHeaderColumn>
           <TableHeaderColumn tooltip='Total Amount When Purchased'>Original Total Amount</TableHeaderColumn>
           <TableHeaderColumn tooltip='Current Market Total Amount'>Current Total Amount</TableHeaderColumn>
-          <TableHeaderColumn tooltip='Lost/Gain'>Lost/Gain</TableHeaderColumn>
+          <TableHeaderColumn tooltip='Loss/Gain'>Loss/Gain</TableHeaderColumn>
         </TableRow>
       </TableHeader>
 
@@ -106,7 +106,8 @@ class StockPortfolioTable extends Component {
 
       <TableFooter>
         <TableRow>
-          <TableRowColumn colSpan="4" />
+          <TableRowColumn colSpan="3" />
+          <TableRowColumn style={{textAlign: 'right', fontWeight:'bold'}}>Totals:</TableRowColumn>
           <TableRowColumn>{numeral(totals.original).format('$0,0.00')}</TableRowColumn>
           <TableRowColumn>{numeral(totals.current).format('$0,0.00')}</TableRowColumn>
           <TableRowColumn

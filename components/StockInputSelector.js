@@ -8,7 +8,6 @@ class StockInputSelector extends Component {
     super(props);
     this.state = {
       stockDB: stockDB.map(el => `${el.name} - ${el.ticker}`),
-      selectedStock: ""
     };
   }
 
@@ -20,13 +19,12 @@ class StockInputSelector extends Component {
 
     this.setState({
       stockDB: filteredStockDB.map(el => `${el.name} - ${el.ticker}`)
-    })
+    });
   }
 
   onNewRequest(text, index) {
-    this.setState({
-      selectedStock: stockDB[index]
-    })
+    this.props.handleSelectAutoComplete(stockDB[index]);
+    this.refs.stockSearch.setValue("");
   }
 
   render() {
@@ -39,6 +37,7 @@ class StockInputSelector extends Component {
         onUpdateInput={(t) => { this.onUpdateInput(t);}}
         showAllItems={true}
         onNewRequest={(t, idx) => { this.onNewRequest(t, idx) }}
+        ref="stockSearch"
       />
       </div>
     )

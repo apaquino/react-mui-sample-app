@@ -5,24 +5,44 @@ import RaisedButton from 'material-ui/lib/raised-button';
 
 class StockInputForm extends Component {
 
-  onClickAddButton(e) {
+  handleClickAddButton(e) {
     e.preventDefault();
-    console.log(this.refs.name.getValue())
-    console.log(this.refs.ticker.getValue())
-    console.log(this.refs.numShares.getValue())
-    console.log(this.refs.purchasePrice.getValue())
+    const {
+      name,
+      ticker,
+      numShares,
+      purchasePrice,
+    } = this.refs;
+
+    const newStock = {
+      name: name.getValue(),
+      ticker: ticker.getValue(),
+      numShares: numShares.getValue(),
+      purchasePrice: purchasePrice.getValue(),
+    };
+
+    this.props.handleAdd(newStock);
+
   }
+
+  handleClickCancelButton() {
+      this.props.handleCancel();
+  }
+
   render(){
     const { name, ticker } = this.props;
 
     return (
       <div>
+        <h3>Add Stock to Portfolio</h3>
         <TextField
+          hintText="Stock Name"
           defaultValue={name}
           disabled={true}
           ref="name"
         />
         <TextField
+          hintText="Stock Ticker"
           defaultValue={ticker}
           disabled={true}
           ref="ticker"
@@ -39,11 +59,12 @@ class StockInputForm extends Component {
         <RaisedButton
           label="Add"
           secondary={true}
-          onClick={this.onClickAddButton.bind(this)}
+          onClick={this.handleClickAddButton.bind(this)}
         />
         <RaisedButton
           label="Cancel"
           primary={true}
+          onClick={this.handleClickCancelButton.bind(this)}
         />
       </div>
     )
