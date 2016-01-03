@@ -10,7 +10,6 @@ import realTimeStockDB from '../data/mockStockDB';
 import numeral from 'numeral';
 import FlatButton from 'material-ui/lib/flat-button';
 
-
 const loss = {
   color: 'red'
 };

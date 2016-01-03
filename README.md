@@ -2,7 +2,7 @@
 
 This is a app to practice/testing material-ui and refactoring my stock app based on new techniques I discovered when refining my react best practices.
 
-It uses React and React-Dom version 0.14 with webpack 1.x and babel 6.
+It uses React and React-Dom version 0.14, material-ui, webpack 1.x and babel 6.
 
 You should have node/npm installed as well.
 
@@ -29,7 +29,7 @@ Open your browser and go to http://localhost:3333
 
 TODO
 
-1. Refactor to make a new StockTableRow
+1. Refactor to make a new StockTableRow component
 2. ~~PropTypes~~
 3. Test :)
 4. Hide AutoComplete bar when adding a stock and have it show again after adding a stock or cancelling.
