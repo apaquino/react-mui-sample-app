@@ -7,7 +7,15 @@ import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import realTimeStockDB from '../data/mockStockDB';
+import numeral from 'numeral';
 
+const loss = {
+  color: 'red'
+};
+
+const gain = {
+  color: 'green'
+};
 
 class StockPortfolioTable extends Component {
   constructor(props) {
@@ -25,7 +33,6 @@ class StockPortfolioTable extends Component {
   }
 
   renderStockRows() {
-    console.log("renderStockRows ran")
     const { portfolio } = this.props;
     return portfolio.map( stock => {
 
@@ -38,10 +45,10 @@ class StockPortfolioTable extends Component {
             <TableRowColumn>{stock.name}</TableRowColumn>
             <TableRowColumn>{stock.ticker}</TableRowColumn>
             <TableRowColumn>{stock.numShares}</TableRowColumn>
-            <TableRowColumn>{stock.purchasePrice}</TableRowColumn>
-            <TableRowColumn>{originalTotalPrice}</TableRowColumn>
-            <TableRowColumn>{currentTotalPrice}</TableRowColumn>
-            <TableRowColumn>{currentTotalPrice - originalTotalPrice}</TableRowColumn>
+            <TableRowColumn>{numeral(stock.purchasePrice).format('$0,0.00')}</TableRowColumn>
+            <TableRowColumn>{numeral(originalTotalPrice).format('$0,0.00')}</TableRowColumn>
+            <TableRowColumn>{numeral(currentTotalPrice).format('$0,0.00')}</TableRowColumn>
+            <TableRowColumn style={(currentTotalPrice - originalTotalPrice) < 0 ? loss : gain}>{numeral(currentTotalPrice - originalTotalPrice).format('$0,0.00')}</TableRowColumn>
         </TableRow>
       )
     })
@@ -101,9 +108,9 @@ class StockPortfolioTable extends Component {
       <TableFooter>
         <TableRow>
           <TableRowColumn colSpan="4" />
-          <TableRowColumn>{totals.original}</TableRowColumn>
-          <TableRowColumn>{totals.current}</TableRowColumn>
-          <TableRowColumn>{totals.current - totals.original}</TableRowColumn>
+          <TableRowColumn>{numeral(totals.original).format('$0,0.00')}</TableRowColumn>
+          <TableRowColumn>{numeral(totals.current).format('$0,0.00')}</TableRowColumn>
+          <TableRowColumn style={(totals.current - totals.original) < 0 ? loss : gain}>{numeral(totals.current - totals.original).format('$0,0.00')}</TableRowColumn>
         </TableRow>
       </TableFooter>
       </Table>
