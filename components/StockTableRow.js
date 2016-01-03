@@ -5,7 +5,6 @@ import numeral from 'numeral';
 import FlatButton from 'material-ui/lib/flat-button';
 import Dialog from 'material-ui/lib/dialog';
 
-
 const loss = {
   color: 'red'
 };
@@ -59,11 +58,13 @@ class StockTableRow extends Component {
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleClose.bind(this)} />,
+        onTouchTap={this.handleClose.bind(this)}
+      />,
       <FlatButton
         label="Submit"
         secondary={true}
-        onTouchTap={this.handleRemoveButtonClick.bind(this, id)} />,
+        onTouchTap={this.handleRemoveButtonClick.bind(this, id)}
+      />,
     ];
 
     return (
