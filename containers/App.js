@@ -72,8 +72,7 @@ class App extends Component {
                             ticker={stockToAdd.ticker}
                             handleCancel={this.handleCancel.bind(this)}
                             handleAdd={this.handleAdd.bind(this)}
-                          /> : null
-        }
+                          /> : null}
         <br />
         <Paper zDepth={2} >
           <StockPortfolioTable

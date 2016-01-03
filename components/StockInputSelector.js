@@ -33,15 +33,15 @@ class StockInputSelector extends Component {
   render() {
     return(
       <div>
-      <AutoComplete
-        fullWidth={true}
-        hintText="Enter stock name or ticker to add"
-        dataSource={this.state.stockDB}
-        onUpdateInput={(t) => { this.onUpdateInput(t);}}
-        showAllItems={true}
-        onNewRequest={(t, idx) => { this.onNewRequest(t, idx) }}
-        ref="stockSearch"
-      />
+        <AutoComplete
+          fullWidth={true}
+          hintText="Enter stock name or ticker to add"
+          dataSource={this.state.stockDB}
+          onUpdateInput={(t) => { this.onUpdateInput(t);}}
+          showAllItems={true}
+          onNewRequest={(t, idx) => { this.onNewRequest(t, idx) }}
+          ref="stockSearch"
+        />
       </div>
     )
   }
