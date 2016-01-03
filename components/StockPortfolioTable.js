@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Table from 'material-ui/lib/table/table';
 import TableBody from 'material-ui/lib/table/table-body';
 import TableFooter from 'material-ui/lib/table/table-footer';
@@ -17,6 +17,11 @@ const loss = {
 
 const gain = {
   color: 'green'
+};
+
+const propTypes = {
+  portfolio: PropTypes.array.isRequired,
+  handleRemove: PropTypes.func,
 };
 
 class StockPortfolioTable extends Component {
@@ -91,7 +96,6 @@ class StockPortfolioTable extends Component {
   }
 
   render() {
-
     const { portfolio } = this.props;
     const totals = this.calculatePortfolioTotals(portfolio);
 
@@ -148,5 +152,7 @@ class StockPortfolioTable extends Component {
     )
   }
 }
+
+StockPortfolioTable.propTypes = propTypes;
 
 export default StockPortfolioTable;

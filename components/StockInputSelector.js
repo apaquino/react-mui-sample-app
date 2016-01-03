@@ -1,7 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import AutoComplete from 'material-ui/lib/auto-complete.js';
 import stockDB from '../data/mockStockDB';
 
+const propTypes = {
+  handleSelectAutoComplete: PropTypes.func,
+};
 
 class StockInputSelector extends Component {
   constructor(props) {
@@ -43,5 +46,7 @@ class StockInputSelector extends Component {
     )
   }
 }
+
+StockInputSelector.propTypes = propTypes;
 
 export default StockInputSelector;
