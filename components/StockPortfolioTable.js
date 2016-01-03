@@ -30,9 +30,6 @@ class StockPortfolioTable extends Component {
     this.state = {
       fixedHeader: false,
       fixedFooter: false,
-      stripedRows: true,
-      showRowHover: true,
-      selectable: true,
       displaySelectAll: false,
       displayRowCheckbox: false,
     };
@@ -45,7 +42,6 @@ class StockPortfolioTable extends Component {
   renderStockRows() {
     const { portfolio, handleRemove } = this.props;
     return portfolio.map( stock => {
-
       const originalTotalPrice = stock.numShares * stock.purchasePrice,
             realTimeStockQuote = realTimeStockDB.filter(el =>  el.ticker === stock.ticker)[0].currentPrice,
             currentTotalPrice = stock.numShares * realTimeStockQuote;
@@ -88,20 +84,23 @@ class StockPortfolioTable extends Component {
 
   render() {
     const { portfolio } = this.props;
+    const {
+      fixedHeader,
+      fixedFooter,
+      displaySelectAll,
+      displayRowCheckbox,
+    } = this.state;
+
     const totals = this.calculatePortfolioTotals(portfolio);
 
     return(
         <Table
-          height={this.state.height}
-          fixedHeader={this.state.fixedHeader}
-          fixedFooter={this.state.fixedFooter}
-          selectable={this.state.selectable}
-          multiSelectable={this.state.multiSelectable}
+          fixedHeader={fixedHeader}
+          fixedFooter={fixedFooter}
         >
-        <TableHeader
-          displaySelectAll={this.state.displaySelectAll}>
+        <TableHeader displaySelectAll={displaySelectAll}>
           <TableRow>
-            <TableHeaderColumn colSpan="8" tooltip='Super Header' style={{textAlign: 'center', fontSize: 'large'}}>
+            <TableHeaderColumn colSpan="8" style={{textAlign: 'center', fontSize: 'large'}}>
               Your Stock Portfolio
             </TableHeaderColumn>
             </TableRow>
@@ -117,10 +116,7 @@ class StockPortfolioTable extends Component {
             </TableRow>
           </TableHeader>
           <TableBody
-            deselectOnClickaway={this.state.deselectOnClickaway}
-            showRowHover={this.state.showRowHover}
-            stripedRows={this.state.stripedRows}
-            displayRowCheckbox={this.state.displayRowCheckbox}
+            displayRowCheckbox={displayRowCheckbox}
           >
           {portfolio.length !== 0 ? this.renderStockRows() : this.renderEmptyPortfolio()}
           </TableBody>
@@ -134,7 +130,7 @@ class StockPortfolioTable extends Component {
                 colSpan="2"
                 style={(totals.current - totals.original) < 0 ? loss : gain}
               >
-              {numeral(totals.current - totals.original).format('$0,0.00')}
+                {numeral(totals.current - totals.original).format('$0,0.00')}
               </TableRowColumn>
             </TableRow>
           </TableFooter>
