@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 import StockInputSelector from '../components/StockInputSelector';
 import StockPortfolioTable from '../components/StockPortfolioTable';
+import StockInputForm from '../components/StockInputForm';
 import stockDB from '../data/mockStockDB';
 import stockPortfolio from '../data/mockStockPortfolio';
 
@@ -11,7 +12,9 @@ class App extends Component {
     super(props);
     this.state = {
       stockDB,
-      stockPortfolio
+      stockPortfolio,
+      isAddingStock: false,
+      stockToAdd: ""
     };
   }
 
@@ -26,6 +29,7 @@ class App extends Component {
         />
         <br />
         <StockInputSelector />
+        <StockInputForm name="Stock Name" ticker="Stock Ticker"/>
         <StockPortfolioTable portfolio={stockPortfolio} />
       </div>
     )

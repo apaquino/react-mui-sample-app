@@ -70,7 +70,6 @@ class StockPortfolioTable extends Component {
     const { portfolio } = this.props;
     const totals = this.calculatePortfolioTotals(portfolio);
 
-    console.log(totals)
     return(
       <Table
         height={this.state.height}
@@ -110,7 +109,11 @@ class StockPortfolioTable extends Component {
           <TableRowColumn colSpan="4" />
           <TableRowColumn>{numeral(totals.original).format('$0,0.00')}</TableRowColumn>
           <TableRowColumn>{numeral(totals.current).format('$0,0.00')}</TableRowColumn>
-          <TableRowColumn style={(totals.current - totals.original) < 0 ? loss : gain}>{numeral(totals.current - totals.original).format('$0,0.00')}</TableRowColumn>
+          <TableRowColumn
+            style={(totals.current - totals.original) < 0 ? loss : gain}
+          >
+          {numeral(totals.current - totals.original).format('$0,0.00')}
+          </TableRowColumn>
         </TableRow>
       </TableFooter>
       </Table>
