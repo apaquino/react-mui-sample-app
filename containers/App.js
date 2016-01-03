@@ -61,7 +61,6 @@ class App extends Component {
       <div>
         <AppBar
           title="React Material-UI Stock App Example"
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
         />
         <br />
         <StockInputSelector handleSelectAutoComplete={this.handleSelect.bind(this)}/>

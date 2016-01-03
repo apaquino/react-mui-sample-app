@@ -74,7 +74,7 @@ class StockPortfolioTable extends Component {
   calculatePortfolioTotals(portfolio) {
     let totals = { original: 0, current: 0 }
 
-    return portfolio.reduce( (acc, stock ) => {
+    return portfolio.reduce( (acc, stock) => {
       const currentStockQuote = realTimeStockDB.filter(el =>  el.ticker === stock.ticker)[0].currentPrice;
       acc.original = acc.original + (stock.purchasePrice * stock.numShares);
       acc.current = acc.current + (currentStockQuote * stock.numShares);
@@ -118,7 +118,7 @@ class StockPortfolioTable extends Component {
           <TableBody
             displayRowCheckbox={displayRowCheckbox}
           >
-          {portfolio.length !== 0 ? this.renderStockRows() : this.renderEmptyPortfolio()}
+            {portfolio.length !== 0 ? this.renderStockRows() : this.renderEmptyPortfolio()}
           </TableBody>
           <TableFooter>
             <TableRow>
