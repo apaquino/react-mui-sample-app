@@ -88,7 +88,7 @@ class StockTableRow extends Component {
               open={this.state.open}
               onRequestClose={this.handleClose}
             >
-              {`Are are about to remove ${name} - ${ticker} stock. Press submit to complete transaction`}
+              {`You are about to remove ${name} - ${ticker} stock. Press submit to complete transaction`}
             </Dialog>
           </TableRowColumn>
       </TableRow>
