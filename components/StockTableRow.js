@@ -86,7 +86,8 @@ class StockTableRow extends Component {
               actions={actions}
               modal={false}
               open={this.state.open}
-              onRequestClose={this.handleClose}>
+              onRequestClose={this.handleClose}
+            >
               {`Are are about to remove ${name} - ${ticker} stock. Press submit to complete transaction`}
             </Dialog>
           </TableRowColumn>
