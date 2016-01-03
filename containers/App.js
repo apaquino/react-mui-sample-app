@@ -1,24 +1,32 @@
 import React, {Component} from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 import StockInputSelector from '../components/StockInputSelector';
+import StockPortfolioTable from '../components/StockPortfolioTable';
 import stockDB from '../data/mockStockDB';
+import stockPortfolio from '../data/mockStockPortfolio';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stockDB
+      stockDB,
+      stockPortfolio
     };
   }
+
   render() {
+    const {stockPortfolio} = this.state;
+
     return (
       <div>
         <AppBar
           title="React Material-UI Stock App Example"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         />
-      <StockInputSelector />
+        <br />
+        <StockInputSelector />
+        <StockPortfolioTable portfolio={stockPortfolio} />
       </div>
     )
   }

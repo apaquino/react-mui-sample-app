@@ -34,7 +34,7 @@ class StockInputSelector extends Component {
       <div>
       <AutoComplete
         fullWidth={true}
-        hintText="Enter stock name or ticker"
+        hintText="Enter stock name or ticker to add"
         dataSource={this.state.stockDB}
         onUpdateInput={(t) => { this.onUpdateInput(t);}}
         showAllItems={true}
