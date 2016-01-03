@@ -21,8 +21,12 @@ class StockInputForm extends Component {
       purchasePrice: purchasePrice.getValue(),
     };
 
-    this.props.handleAdd(newStock);
+    if (!newStock.numShares || !newStock.purchasePrice) {
+      alert("Number of Shares or Purchase Price Cannot be Empty");
+      return;
+    }
 
+    this.props.handleAdd(newStock);
   }
 
   handleClickCancelButton() {

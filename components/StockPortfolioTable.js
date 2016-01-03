@@ -8,6 +8,7 @@ import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import realTimeStockDB from '../data/mockStockDB';
 import numeral from 'numeral';
+import FlatButton from 'material-ui/lib/flat-button';
 
 const loss = {
   color: 'red'
@@ -26,9 +27,8 @@ class StockPortfolioTable extends Component {
       stripedRows: true,
       showRowHover: true,
       selectable: true,
-      multiSelectable: false,
-      enableSelectAll: false,
-      deselectOnClickaway: true,
+      displaySelectAll: false,
+      displayRowCheckbox: false,
     };
   }
 
@@ -42,7 +42,7 @@ class StockPortfolioTable extends Component {
 
     return (
         <TableRow key={stock.id}>
-            <TableRowColumn>{stock.name}</TableRowColumn>
+            <TableRowColumn colSpan="2">{stock.name}</TableRowColumn>
             <TableRowColumn>{stock.ticker}</TableRowColumn>
             <TableRowColumn>{stock.numShares}</TableRowColumn>
             <TableRowColumn>{numeral(stock.purchasePrice).format('$0,0.00')}</TableRowColumn>
@@ -65,59 +65,65 @@ class StockPortfolioTable extends Component {
     }, totals );
   }
 
+  onRowSelection(row){
+
+  }
+
   render() {
 
     const { portfolio } = this.props;
     const totals = this.calculatePortfolioTotals(portfolio);
 
     return(
-      <Table
-        height={this.state.height}
-        fixedHeader={this.state.fixedHeader}
-        fixedFooter={this.state.fixedFooter}
-        selectable={this.state.selectable}
-        multiSelectable={this.state.multiSelectable}
-        onRowSelection={this._onRowSelection}
-      >
-      <TableHeader enableSelectAll={this.state.enableSelectAll}>
-        <TableRow>
-          <TableHeaderColumn colSpan="7" tooltip='Super Header' style={{textAlign: 'center', fontSize: 'large'}}>
-            Your Stock Portfolio
-          </TableHeaderColumn>
-        </TableRow>
-        <TableRow>
-          <TableHeaderColumn tooltip='Company Name'>Name</TableHeaderColumn>
-          <TableHeaderColumn tooltip='Ticker Symbol'>Symbol</TableHeaderColumn>
-          <TableHeaderColumn tooltip='Number of Shares Owned'># Shares</TableHeaderColumn>
-          <TableHeaderColumn tooltip='Price Purchased'>Price Purchased</TableHeaderColumn>
-          <TableHeaderColumn tooltip='Total Amount When Purchased'>Original Total Amount</TableHeaderColumn>
-          <TableHeaderColumn tooltip='Current Market Total Amount'>Current Total Amount</TableHeaderColumn>
-          <TableHeaderColumn tooltip='Loss/Gain'>Loss/Gain</TableHeaderColumn>
-        </TableRow>
-      </TableHeader>
+        <Table
+          height={this.state.height}
+          fixedHeader={this.state.fixedHeader}
+          fixedFooter={this.state.fixedFooter}
+          selectable={this.state.selectable}
+          multiSelectable={this.state.multiSelectable}
+          onRowSelection={this.onRowSelection.bind(this)}
+        >
+        <TableHeader
+          displaySelectAll={this.state.displaySelectAll}>
+          <TableRow>
+            <TableHeaderColumn colSpan="7" tooltip='Super Header' style={{textAlign: 'center', fontSize: 'large'}}>
+              Your Stock Portfolio
+            </TableHeaderColumn>
+          </TableRow>
+          <TableRow>
+            <TableHeaderColumn tooltip='Company Name'>Name</TableHeaderColumn>
+            <TableHeaderColumn tooltip='Ticker Symbol'>Symbol</TableHeaderColumn>
+            <TableHeaderColumn tooltip='Number of Shares Owned'># Shares</TableHeaderColumn>
+            <TableHeaderColumn tooltip='Price Purchased'>Price Purchased</TableHeaderColumn>
+            <TableHeaderColumn tooltip='Total Amount When Purchased'>Original Total Amount</TableHeaderColumn>
+            <TableHeaderColumn tooltip='Current Market Total Amount'>Current Total Amount</TableHeaderColumn>
+            <TableHeaderColumn tooltip='Loss/Gain'>Loss/Gain</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
 
-      <TableBody
-        deselectOnClickaway={this.state.deselectOnClickaway}
-        showRowHover={this.state.showRowHover}
-        stripedRows={this.state.stripedRows}
-      >
-      {this.renderStockRows()}
-      </TableBody>
+        <TableBody
+          deselectOnClickaway={this.state.deselectOnClickaway}
+          showRowHover={this.state.showRowHover}
+          stripedRows={this.state.stripedRows}
+          displayRowCheckbox={this.state.displayRowCheckbox}
+        >
+        {this.renderStockRows()}
+        </TableBody>
 
-      <TableFooter>
-        <TableRow>
-          <TableRowColumn colSpan="3" />
-          <TableRowColumn style={{textAlign: 'right', fontWeight:'bold'}}>Totals:</TableRowColumn>
-          <TableRowColumn>{numeral(totals.original).format('$0,0.00')}</TableRowColumn>
-          <TableRowColumn>{numeral(totals.current).format('$0,0.00')}</TableRowColumn>
-          <TableRowColumn
-            style={(totals.current - totals.original) < 0 ? loss : gain}
-          >
-          {numeral(totals.current - totals.original).format('$0,0.00')}
-          </TableRowColumn>
-        </TableRow>
-      </TableFooter>
-      </Table>
+        <TableFooter>
+          <TableRow>
+            <TableRowColumn colSpan="3" />
+            <TableRowColumn style={{textAlign: 'right', fontWeight:'bold'}}>Totals:</TableRowColumn>
+            <TableRowColumn>{numeral(totals.original).format('$0,0.00')}</TableRowColumn>
+            <TableRowColumn>{numeral(totals.current).format('$0,0.00')}</TableRowColumn>
+            <TableRowColumn
+              style={(totals.current - totals.original) < 0 ? loss : gain}
+            >
+            {numeral(totals.current - totals.original).format('$0,0.00')}
+            </TableRowColumn>
+          </TableRow>
+        </TableFooter>
+        </Table>
     )
   }
 }

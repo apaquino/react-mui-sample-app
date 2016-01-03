@@ -26,7 +26,6 @@ class App extends Component {
   }
 
   handleSelect(stock) {
-    console.log("in handle select",stock);
     this.setState({
       stockToAdd: stock,
       isAddingStock: true
@@ -34,11 +33,8 @@ class App extends Component {
   }
 
   handleAdd(stock) {
-    console.log("in handle add of app", stock);
-
     const { stockPortfolio } = this.state;
     stock.id = ~~ (Date.now() * Math.random());
-
     this.setState({
       stockPortfolio: stockPortfolio.concat(stock),
       isAddingStock: false
