@@ -44,38 +44,38 @@ class StockInputForm extends Component {
 
     return (
       <div>
-        <h3>Add Stock to Portfolio</h3>
-        <TextField
-          hintText="Stock Name"
-          defaultValue={name}
-          disabled={true}
-          ref="name"
-        />
-        <TextField
-          hintText="Stock Ticker"
-          defaultValue={ticker}
-          disabled={true}
-          ref="ticker"
-        />
-        <TextField
-          hintText="Number of shares"
-          ref="numShares"
-        />
-        <TextField
-          hintText="Purchase Price"
-          ref="purchasePrice"
-        />
-        <br />
-        <RaisedButton
-          label="Add"
-          secondary={true}
-          onClick={this.handleClickAddButton.bind(this)}
-        />
-        <RaisedButton
-          label="Cancel"
-          primary={true}
-          onClick={this.handleClickCancelButton.bind(this)}
-        />
+          <h3>Add Stock to Portfolio</h3>
+          <TextField
+            hintText="Stock Name"
+            defaultValue={name}
+            disabled={true}
+            ref="name"
+          />
+          <TextField
+            hintText="Stock Ticker"
+            defaultValue={ticker}
+            disabled={true}
+            ref="ticker"
+          />
+          <TextField
+            hintText="Number of shares"
+            ref="numShares"
+          />
+          <TextField
+            hintText="Purchase Price"
+            ref="purchasePrice"
+          />
+          <br />
+          <RaisedButton
+            label="Add"
+            secondary={true}
+            onClick={this.handleClickAddButton.bind(this)}
+          />
+          <RaisedButton
+            label="Cancel"
+            primary={true}
+            onClick={this.handleClickCancelButton.bind(this)}
+          />
       </div>
     )
   }

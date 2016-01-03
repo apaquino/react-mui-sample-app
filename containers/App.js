@@ -5,6 +5,8 @@ import StockPortfolioTable from '../components/StockPortfolioTable';
 import StockInputForm from '../components/StockInputForm';
 import stockDB from '../data/mockStockDB';
 import stockPortfolio from '../data/mockStockPortfolio';
+import Paper from 'material-ui/lib/paper';
+
 
 const hide = {
   display: 'none'
@@ -72,10 +74,12 @@ class App extends Component {
                             handleAdd={this.handleAdd.bind(this)}
                           /> : null
         }
-        <StockPortfolioTable
-          portfolio={stockPortfolio}
-          handleRemove={this.handleRemove.bind(this)}
-        />
+        <Paper zDepth={2} >
+          <StockPortfolioTable
+            portfolio={stockPortfolio}
+            handleRemove={this.handleRemove.bind(this)}
+          />
+        </Paper>
       </div>
     )
   }
