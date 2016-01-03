@@ -47,7 +47,12 @@ class App extends Component {
     });
   }
 
-
+  handleRemove(id){
+    const { stockPortfolio } = this.state;
+    this.setState({
+      stockPortfolio: stockPortfolio.filter(stock => stock.id !== id)
+    });
+  }
 
   render() {
     const {stockPortfolio, isAddingStock, stockToAdd} = this.state;
@@ -68,7 +73,10 @@ class App extends Component {
                             handleAdd={this.handleAdd.bind(this)}
                           /> : null
         }
-        <StockPortfolioTable portfolio={stockPortfolio} />
+        <StockPortfolioTable
+          portfolio={stockPortfolio}
+          handleRemove={this.handleRemove.bind(this)}
+        />
       </div>
     )
   }

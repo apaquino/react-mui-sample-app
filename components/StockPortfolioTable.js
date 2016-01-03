@@ -10,6 +10,7 @@ import realTimeStockDB from '../data/mockStockDB';
 import numeral from 'numeral';
 import FlatButton from 'material-ui/lib/flat-button';
 
+
 const loss = {
   color: 'red'
 };
@@ -32,6 +33,10 @@ class StockPortfolioTable extends Component {
     };
   }
 
+  handleRemove(id) {
+    this.props.handleRemove(id);
+  }
+
   renderStockRows() {
     const { portfolio } = this.props;
     return portfolio.map( stock => {
@@ -49,9 +54,29 @@ class StockPortfolioTable extends Component {
             <TableRowColumn>{numeral(originalTotalPrice).format('$0,0.00')}</TableRowColumn>
             <TableRowColumn>{numeral(currentTotalPrice).format('$0,0.00')}</TableRowColumn>
             <TableRowColumn style={(currentTotalPrice - originalTotalPrice) < 0 ? loss : gain}>{numeral(currentTotalPrice - originalTotalPrice).format('$0,0.00')}</TableRowColumn>
+            <TableRowColumn>
+              <FlatButton
+                label="Remove"
+                primary={true}
+                onClick={this.handleRemove.bind(this, stock.id)}
+              />
+            </TableRowColumn>
         </TableRow>
       )
     })
+  }
+
+  renderEmptyPortfolio() {
+    return (
+      <TableRow>
+        <TableRowColumn
+          colSpan="9"
+          style={{textAlign: 'center'}}
+        >
+          You have no stocks
+        </TableRowColumn>
+      </TableRow>
+    )
   }
 
   calculatePortfolioTotals(portfolio) {
@@ -63,10 +88,6 @@ class StockPortfolioTable extends Component {
       acc.current = acc.current + (currentStockQuote * stock.numShares);
       return acc;
     }, totals );
-  }
-
-  onRowSelection(row){
-
   }
 
   render() {
@@ -81,12 +102,11 @@ class StockPortfolioTable extends Component {
           fixedFooter={this.state.fixedFooter}
           selectable={this.state.selectable}
           multiSelectable={this.state.multiSelectable}
-          onRowSelection={this.onRowSelection.bind(this)}
         >
         <TableHeader
           displaySelectAll={this.state.displaySelectAll}>
           <TableRow>
-            <TableHeaderColumn colSpan="7" tooltip='Super Header' style={{textAlign: 'center', fontSize: 'large'}}>
+            <TableHeaderColumn colSpan="8" tooltip='Super Header' style={{textAlign: 'center', fontSize: 'large'}}>
               Your Stock Portfolio
             </TableHeaderColumn>
           </TableRow>
@@ -98,6 +118,7 @@ class StockPortfolioTable extends Component {
             <TableHeaderColumn tooltip='Total Amount When Purchased'>Original Total Amount</TableHeaderColumn>
             <TableHeaderColumn tooltip='Current Market Total Amount'>Current Total Amount</TableHeaderColumn>
             <TableHeaderColumn tooltip='Loss/Gain'>Loss/Gain</TableHeaderColumn>
+            <TableHeaderColumn tooltip='Remove'>Remove/Gain</TableHeaderColumn>
           </TableRow>
         </TableHeader>
 
@@ -107,9 +128,8 @@ class StockPortfolioTable extends Component {
           stripedRows={this.state.stripedRows}
           displayRowCheckbox={this.state.displayRowCheckbox}
         >
-        {this.renderStockRows()}
+        {portfolio.length !== 0 ? this.renderStockRows() : this.renderEmptyPortfolio()}
         </TableBody>
-
         <TableFooter>
           <TableRow>
             <TableRowColumn colSpan="3" />
@@ -117,6 +137,7 @@ class StockPortfolioTable extends Component {
             <TableRowColumn>{numeral(totals.original).format('$0,0.00')}</TableRowColumn>
             <TableRowColumn>{numeral(totals.current).format('$0,0.00')}</TableRowColumn>
             <TableRowColumn
+              colSpan="2"
               style={(totals.current - totals.original) < 0 ? loss : gain}
             >
             {numeral(totals.current - totals.original).format('$0,0.00')}
