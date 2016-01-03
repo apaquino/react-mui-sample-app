@@ -3,6 +3,8 @@ import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import numeral from 'numeral';
 import FlatButton from 'material-ui/lib/flat-button';
+import Dialog from 'material-ui/lib/dialog';
+
 
 const loss = {
   color: 'red'
@@ -24,8 +26,22 @@ const propTypes = {
 };
 
 class StockTableRow extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
   handleRemoveButtonClick(id) {
     this.props.handleRemove(id);
+  }
+
+  handleOpen(){
+    this.setState({open: true});
+  }
+
+  handleClose(){
+    this.setState({open: false});
   }
 
   render() {
@@ -38,6 +54,17 @@ class StockTableRow extends Component {
       originalTotalPrice,
       currentTotalPrice,
     } = this.props;
+
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onTouchTap={this.handleClose.bind(this)} />,
+      <FlatButton
+        label="Submit"
+        secondary={true}
+        onTouchTap={this.handleRemoveButtonClick.bind(this, id)} />,
+    ];
 
     return (
       <TableRow>
@@ -52,8 +79,16 @@ class StockTableRow extends Component {
             <FlatButton
               label="Remove"
               primary={true}
-              onClick={this.handleRemoveButtonClick.bind(this, id)}
+              onClick={this.handleOpen.bind(this)}
             />
+            <Dialog
+              title="Are you sure you want to delete this stock from your portfolio?"
+              actions={actions}
+              modal={false}
+              open={this.state.open}
+              onRequestClose={this.handleClose}>
+              {`Are are about to remove ${name} - ${ticker} stock. Press submit to complete transaction`}
+            </Dialog>
           </TableRowColumn>
       </TableRow>
     )
