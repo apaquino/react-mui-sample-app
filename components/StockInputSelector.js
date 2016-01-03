@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import AutoComplete from 'material-ui/lib/auto-complete.js';
 import stockDB from '../data/mockStockDB';
 

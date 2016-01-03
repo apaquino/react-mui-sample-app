@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 import StockInputSelector from '../components/StockInputSelector';
 import StockPortfolioTable from '../components/StockPortfolioTable';
