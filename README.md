@@ -34,5 +34,6 @@ TODO
 3. Test :)
 4. Hide AutoComplete bar when adding a stock and have it show again after adding a stock or cancelling.
 5. Refactor with Optimizations
-6. Refactor with code style
+6. ~~Refactor with code style~~
 7. Refactor when table on row selection bug is resolved.
+8. More styling with inline styles and flexbox
