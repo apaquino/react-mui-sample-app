@@ -43,7 +43,7 @@ class StockPortfolioTable extends Component {
     const { portfolio, handleRemove } = this.props;
     return portfolio.map( stock => {
       const originalTotalPrice = stock.numShares * stock.purchasePrice,
-            realTimeStockQuote = realTimeStockDB.filter(el =>  el.ticker === stock.ticker)[0].currentPrice,
+            realTimeStockQuote = realTimeStockDB.find(el =>  el.ticker === stock.ticker).currentPrice,
             currentTotalPrice = stock.numShares * realTimeStockQuote;
 
       return (
