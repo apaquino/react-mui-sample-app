@@ -75,7 +75,7 @@ class StockPortfolioTable extends Component {
     let totals = { original: 0, current: 0 }
 
     return portfolio.reduce( (acc, stock) => {
-      const currentStockQuote = realTimeStockDB.filter(el =>  el.ticker === stock.ticker)[0].currentPrice;
+      const currentStockQuote = realTimeStockDB.find(el =>  el.ticker === stock.ticker).currentPrice;
       acc.original = acc.original + (stock.purchasePrice * stock.numShares);
       acc.current = acc.current + (currentStockQuote * stock.numShares);
       return acc;
