@@ -62,7 +62,7 @@ class StockTableRow extends Component {
         onTouchTap={this.handleClose.bind(this)}
       />,
       <FlatButton
-        label="Delete"
+        label="Ok"
         secondary={true}
         onTouchTap={this.handleRemoveButtonClick.bind(this, id)}
       />,

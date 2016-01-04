@@ -112,7 +112,7 @@ class StockPortfolioTable extends Component {
               <TableHeaderColumn tooltip='Total Amount When Purchased'>Original Total Amount</TableHeaderColumn>
               <TableHeaderColumn tooltip='Current Market Total Amount'>Current Total Amount</TableHeaderColumn>
               <TableHeaderColumn tooltip='Loss/Gain'>Loss/Gain</TableHeaderColumn>
-              <TableHeaderColumn tooltip='Remove'>Remove/Gain</TableHeaderColumn>
+              <TableHeaderColumn tooltip='Remove'>Remove</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
