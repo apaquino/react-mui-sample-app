@@ -31,7 +31,7 @@ class StockTableRow extends Component {
       open: false
     };
   }
-  
+
   handleRemoveButtonClick(id) {
     this.props.handleRemove(id);
   }
@@ -88,7 +88,7 @@ class StockTableRow extends Component {
               actions={actions}
               modal={false}
               open={this.state.open}
-              onRequestClose={this.handleClose}
+              onRequestClose={this.handleClose.bind(this)}
             >
               {`You are about to remove ${name} - ${ticker} stock. Press submit to complete transaction`}
             </Dialog>
