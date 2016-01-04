@@ -23,12 +23,17 @@ class StockInputForm extends Component {
     const newStock = {
       name: name.getValue(),
       ticker: ticker.getValue(),
-      numShares: numShares.getValue(),
-      purchasePrice: purchasePrice.getValue(),
+      numShares: Number(numShares.getValue()),
+      purchasePrice: Number(purchasePrice.getValue()),
     };
 
     if (!newStock.numShares || !newStock.purchasePrice) {
       alert("Number of Shares or Purchase Price Cannot be Empty");
+      return;
+    }
+
+    if (isNaN(newStock.numShares) || isNaN(newStock.purchasePrice)) {
+      alert("Number of Shares or Purchase Price Must Be A Number");
       return;
     }
 

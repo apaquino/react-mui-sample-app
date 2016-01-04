@@ -9,4 +9,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const appMountPoint = document.getElementById('app');
+
+ReactDOM.render(<App />, appMountPoint);
