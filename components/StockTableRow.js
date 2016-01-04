@@ -31,6 +31,7 @@ class StockTableRow extends Component {
       open: false
     };
   }
+  
   handleRemoveButtonClick(id) {
     this.props.handleRemove(id);
   }
