@@ -11,7 +11,7 @@ const propTypes = {
 
 class StockInputForm extends Component {
 
-  handleClickAddButton(e) {
+  handleClickAddButton = (e) => {
     e.preventDefault();
     const {
       name,
@@ -40,12 +40,8 @@ class StockInputForm extends Component {
     this.props.handleAdd(newStock);
   }
 
-  handleClickCancelButton() {
-      this.props.handleCancel();
-  }
-
   render(){
-    const { name, ticker } = this.props;
+    const { name, ticker, handleCancel } = this.props;
 
     return (
       <div>
@@ -79,7 +75,7 @@ class StockInputForm extends Component {
           <RaisedButton
             label="Cancel"
             primary={true}
-            onClick={this.handleClickCancelButton.bind(this)}
+            onClick={() => handleCancel()}
           />
       </div>
     )
