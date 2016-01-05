@@ -56,7 +56,7 @@ class StockTableRow extends Component {
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleClose.bind(this)}
+        onTouchTap={() => this.setState({open: false})}
       />,
       <FlatButton
         label="Ok"
@@ -78,14 +78,14 @@ class StockTableRow extends Component {
             <FlatButton
               label="Remove"
               primary={true}
-              onClick={this.handleOpen.bind(this)}
+              onClick={() => this.setState({open: true})}
             />
             <Dialog
               title="Are you sure you want to delete this stock from your portfolio?"
               actions={actions}
               modal={false}
               open={this.state.open}
-              onRequestClose={this.handleClose.bind(this)}
+              onRequestClose={() => this.setState({open: false})}
             >
               {`You are about to remove ${name} - ${ticker} stock. Press submit to complete transaction`}
             </Dialog>
