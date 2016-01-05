@@ -19,11 +19,6 @@ const gain = {
   color: 'green'
 };
 
-const propTypes = {
-  portfolio: PropTypes.array.isRequired,
-  handleRemove: PropTypes.func,
-};
-
 class StockPortfolioTable extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +29,11 @@ class StockPortfolioTable extends Component {
       displayRowCheckbox: false,
     };
   }
-  
+  static propTypes = {
+    portfolio: PropTypes.array.isRequired,
+    handleRemove: PropTypes.func,
+  }
+
   renderStockRows() {
     const { portfolio, handleRemove } = this.props;
     return portfolio.map( stock => {
@@ -134,7 +133,5 @@ class StockPortfolioTable extends Component {
     )
   }
 }
-
-StockPortfolioTable.propTypes = propTypes;
 
 export default StockPortfolioTable;

@@ -2,16 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import AutoComplete from 'material-ui/lib/auto-complete.js';
 import stockDB from '../data/mockStockDB';
 
-const propTypes = {
-  handleSelectAutoComplete: PropTypes.func,
-};
-
 class StockInputSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
       stockDB: stockDB.map(el => `${el.name} - ${el.ticker}`),
     };
+  }
+
+  static propTypes = {
+    handleSelectAutoComplete: PropTypes.func,
   }
 
   onUpdateInput(text) {
@@ -46,7 +46,5 @@ class StockInputSelector extends Component {
     )
   }
 }
-
-StockInputSelector.propTypes = propTypes;
 
 export default StockInputSelector;

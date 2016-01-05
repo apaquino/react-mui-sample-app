@@ -13,23 +13,23 @@ const gain = {
   color: 'green'
 };
 
-const propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  ticker: PropTypes.string.isRequired,
-  numShares: PropTypes.number.isRequired,
-  purchasePrice: PropTypes.number.isRequired,
-  originalTotalPrice: PropTypes.number.isRequired,
-  currentTotalPrice: PropTypes.number.isRequired,
-  handleRemove: PropTypes.func,
-};
-
 class StockTableRow extends Component {
   constructor(props){
     super(props);
     this.state = {
       open: false
     };
+  }
+
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    ticker: PropTypes.string.isRequired,
+    numShares: PropTypes.number.isRequired,
+    purchasePrice: PropTypes.number.isRequired,
+    originalTotalPrice: PropTypes.number.isRequired,
+    currentTotalPrice: PropTypes.number.isRequired,
+    handleRemove: PropTypes.func,
   }
 
   render() {
@@ -86,7 +86,5 @@ class StockTableRow extends Component {
     )
   }
 }
-
-StockTableRow.propTypes = propTypes;
 
 export default StockTableRow;

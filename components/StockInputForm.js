@@ -2,14 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 
-const propTypes = {
-  name: PropTypes.string.isRequired,
-  ticker: PropTypes.string.isRequired,
-  handleAdd: PropTypes.func,
-  handleCancel: PropTypes.func,
-};
-
 class StockInputForm extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    ticker: PropTypes.string.isRequired,
+    handleAdd: PropTypes.func,
+    handleCancel: PropTypes.func,
+  }
 
   handleClickAddButton = (e) => {
     e.preventDefault();
@@ -81,7 +80,5 @@ class StockInputForm extends Component {
     )
   }
 }
-
-StockInputForm.propTypes = propTypes;
 
 export default StockInputForm;
