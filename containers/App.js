@@ -26,14 +26,14 @@ class App extends Component {
     };
   }
 
-  handleSelect(stock) {
+  handleSelect = (stock) => {
     this.setState({
       stockToAdd: stock,
       isAddingStock: true
     });
   }
 
-  handleAdd(stock) {
+  handleAdd = (stock) => {
     const { stockPortfolio } = this.state;
     stock.id = ~~ (Date.now() * Math.random());
     this.setState({
@@ -42,13 +42,13 @@ class App extends Component {
     });
   }
 
-  handleCancel() {
+  handleCancel = () => {
     this.setState({
       isAddingStock: false
     });
   }
 
-  handleRemove(id){
+  handleRemove = (id) => {
     const { stockPortfolio } = this.state;
     this.setState({
       stockPortfolio: stockPortfolio.filter(stock => stock.id !== id)
@@ -64,19 +64,19 @@ class App extends Component {
           title="React Material-UI Stock App Example"
         />
         <br />
-        <StockInputSelector handleSelectAutoComplete={this.handleSelect.bind(this)}/>
+        <StockInputSelector handleSelectAutoComplete={this.handleSelect}/>
         <br />
         {isAddingStock ? <StockInputForm
                             name={stockToAdd.name}
                             ticker={stockToAdd.ticker}
-                            handleCancel={this.handleCancel.bind(this)}
-                            handleAdd={this.handleAdd.bind(this)}
+                            handleCancel={this.handleCancel}
+                            handleAdd={this.handleAdd}
                           /> : null}
         <br />
         <Paper zDepth={2} >
           <StockPortfolioTable
             portfolio={stockPortfolio}
-            handleRemove={this.handleRemove.bind(this)}
+            handleRemove={this.handleRemove}
           />
         </Paper>
       </div>
