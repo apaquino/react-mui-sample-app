@@ -65,7 +65,9 @@ class StockTableRow extends Component {
           <TableRowColumn>{numeral(purchasePrice).format('$0,0.00')}</TableRowColumn>
           <TableRowColumn>{numeral(originalTotalPrice).format('$0,0.00')}</TableRowColumn>
           <TableRowColumn>{numeral(currentTotalPrice).format('$0,0.00')}</TableRowColumn>
-          <TableRowColumn style={(currentTotalPrice - originalTotalPrice) < 0 ? loss : gain}>{numeral(currentTotalPrice - originalTotalPrice).format('$0,0.00')}</TableRowColumn>
+          <TableRowColumn style={(currentTotalPrice - originalTotalPrice) < 0 ? loss : gain}>
+            {numeral(currentTotalPrice - originalTotalPrice).format('$0,0.00')}
+          </TableRowColumn>
           <TableRowColumn>
             <FlatButton
               label="Remove"
