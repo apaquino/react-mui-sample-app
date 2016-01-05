@@ -32,10 +32,6 @@ class StockTableRow extends Component {
     };
   }
 
-  handleRemoveButtonClick(id) {
-    this.props.handleRemove(id);
-  }
-
   handleOpen(){
     this.setState({open: true});
   }
@@ -53,6 +49,7 @@ class StockTableRow extends Component {
       purchasePrice,
       originalTotalPrice,
       currentTotalPrice,
+      handleRemove,
     } = this.props;
 
     const actions = [
@@ -64,7 +61,7 @@ class StockTableRow extends Component {
       <FlatButton
         label="Ok"
         secondary={true}
-        onTouchTap={this.handleRemoveButtonClick.bind(this, id)}
+        onTouchTap={() => handleRemove(id)}
       />,
     ];
 
