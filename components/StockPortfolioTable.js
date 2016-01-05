@@ -34,11 +34,7 @@ class StockPortfolioTable extends Component {
       displayRowCheckbox: false,
     };
   }
-
-  handleRemove(id) {
-    this.props.handleRemove(id);
-  }
-
+  
   renderStockRows() {
     const { portfolio, handleRemove } = this.props;
     return portfolio.map( stock => {
